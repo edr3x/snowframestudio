@@ -13,13 +13,13 @@
 <meta property="og:title" content="Snowframe Creative Studios — VFX, 3D, CGI & Product Animation">
 <meta property="og:description" content="VFX, 3D modeling, CGI and product animation for brands, productions, agencies and architecture. Imagine. Create. Visualize.">
 <meta property="og:url" content="https://snowframestudio.com/">
-<meta property="og:image" content="https://snowframestudio.com/og.png">
+<meta property="og:image" content="https://snowframestudio.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Snowframe Creative Studios — Imagine. Create. Visualize.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -27,7 +27,7 @@
   "name": "Snowframe Creative Studios",
   "alternateName": "Snowframe",
   "url": "https://snowframestudio.com/",
-  "logo": "https://snowframestudio.com/apple-touch-icon.png",
+  "logo": "https://snowframestudio.com/assets/logo.png",
   "email": "contact@snowframestudio.com",
   "slogan": "Imagine. Create. Visualize.",
   "description": "Creative studio for VFX, 3D modeling, CGI and product animation.",
@@ -35,6 +35,7 @@
   "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "email": "contact@snowframestudio.com" }
 }
 </script>
+<link rel="preload" as="image" href="assets/logo.webp" imagesrcset="assets/logo-680.webp 680w, assets/logo.webp 1254w" imagesizes="(max-width: 800px) 88vw, 760px" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- ponytail: one variable family; the width axis does the display/body split -->
@@ -113,7 +114,6 @@
     content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--bar);
     background: #000; z-index: 3;
   }
-  #wire { position: absolute; inset: 0; width: 100%; height: 100%; }
   .vf { position: absolute; inset: calc(var(--bar) + 20px) clamp(12px, 3vw, 24px); pointer-events: none; z-index: 4; }
   .corner { position: absolute; width: 28px; height: 28px; border: 0 solid var(--line); opacity: .6; }
   .tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
@@ -131,7 +131,7 @@
   @keyframes blink { 50% { opacity: .15; } }
 
   .title { position: relative; z-index: 5; text-align: center; padding: 0 1rem; }
-  /* intro: globe grows in, then the title resolves like a focus pull */
+  /* intro: the title resolves like a focus pull */
   .intro .title > * { opacity: 0; transform: translateY(14px); filter: blur(8px); }
   .intro.go .title > * {
     opacity: 1; transform: none; filter: none;
@@ -140,14 +140,38 @@
   .intro.go .title > :nth-child(2) { transition-delay: .15s; }
   .intro.go .title > :nth-child(3) { transition-delay: .3s; }
   .intro.go .title > :nth-child(4) { transition-delay: .45s; }
-  .wordmark {
-    font-weight: 800;
-    font-size: clamp(1.9rem, 9vw, 6rem);
-    letter-spacing: .01em; line-height: .9;
-    text-shadow: -1.5px 0 #ff2a4f80, 1.5px 0 #2ad4ff80;   /* lens fringing, static */
+  /* client logo: transparent cut of snowframe-hero.png */
+  .logo { display: block; margin: 0 auto; }
+  .logo-frame {
+    position: relative; display: block; margin: 0 auto;
+    width: min(760px, 88vw, calc((max(100svh, 600px) - 2 * var(--bar) - 220px) * 1.953));   /* hero never gets shorter than 600px, so neither does the logo budget */
+    aspect-ratio: 1254 / 642;
+    /* the leopard's tail widens the art to the left; shift so the lettering (not the image box) centres over the tagline */
+    translate: -4.5% 0;
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform .6s var(--ease);
   }
-  .sub { font-weight: 500; font-size: clamp(.85rem, 2.2vw, 1.15rem); letter-spacing: .5em; margin-top: 1.4rem; padding-left: .5em; }
-  .tagline { margin-top: 1.6rem; font-size: clamp(1.05rem, 2.6vw, 1.35rem); font-weight: 300; color: var(--line); letter-spacing: .02em; }
+  .logo-frame img { display: block; width: 100%; height: 100%; }
+  /* light sweep across the lettering and fur, masked to the logo's own shape */
+  .logo-frame::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(100deg, transparent 42%, #cfe3ff 50%, transparent 58%) no-repeat;
+    background-size: 300% 100%; background-position: 130% 0;
+    mask: url(assets/logo-680.webp) center / 100% 100% no-repeat luminance;
+    -webkit-mask: url(assets/logo-680.webp) center / 100% 100% no-repeat;
+    mix-blend-mode: overlay; opacity: .9;
+  }
+  .go .logo-frame::after { animation: sheen 8s var(--ease) 1.1s infinite; }
+  @keyframes sheen { 0% { background-position: 130% 0; } 22%, 100% { background-position: -30% 0; } }
+  /* one glint in the leopard's eye as the logo lands */
+  .glint {
+    position: absolute; left: 72.2%; top: 22.6%; width: 9%; aspect-ratio: 1;
+    translate: -50% -50%; pointer-events: none; opacity: 0; scale: .2;
+  }
+  .go .glint { animation: glint 1.4s var(--ease) 1.4s 1 both; }
+  @keyframes glint { 0% { opacity: 0; scale: .2; rotate: 0deg; } 30% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: .6; rotate: 45deg; } }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .tagline { margin-top: 1.2rem; font-size: clamp(1.05rem, 2.6vw, 1.35rem); font-weight: 300; color: var(--line); letter-spacing: .02em; }
   .tagline b { font-weight: 600; color: var(--white); }
 
   .btn {
@@ -217,16 +241,23 @@
   footer a { text-decoration: none; }
   footer a:hover { color: var(--white); }
 
-  @media (max-width: 760px) {
+  /* tablet: stack the section heading above its list so the 2×2 client grid gets full width */
+  @media (max-width: 960px) {
     .split { grid-template-columns: 1fr; }
+    .lede { max-width: 52ch; }
+  }
+  @media (max-width: 560px) {
     .clients { grid-template-columns: 1fr; }
     .clients li, .clients li:nth-child(even) { padding: 1.25rem 0; border-right: 0; }
     .clients li:nth-child(odd) { border-right: 0; }
+  }
+  @media (max-width: 760px) {
     .hide-sm { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .grain, .rec::before { animation: none; }
+    .grain, .rec::before, .logo-frame::after, .glint { animation: none; }
+    .glint { display: none; }
     .service, .service::before, .btn, .btn svg { transition: none; }
   }
 </style>
@@ -244,7 +275,6 @@
     </ul>
   </nav>
 
-  <canvas id="wire" aria-hidden="true"></canvas>
 
   <div class="vf label" aria-hidden="true">
     <span class="corner tl"></span><span class="corner tr"></span>
@@ -254,8 +284,13 @@
   </div>
 
   <div class="title" id="top">
-    <h1 class="wordmark x">Snowframe</h1>
-    <p class="sub">CREATIVE STUDIOS</p>
+    <h1 class="logo">
+      <span class="logo-frame">
+        <img src="assets/logo.webp" srcset="assets/logo-680.webp 680w, assets/logo.webp 1254w" sizes="(max-width: 800px) 88vw, 760px" width="1254" height="642" alt="Snow Frame Studio" fetchpriority="high" decoding="async">
+        <svg class="glint" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 L22 18 L40 20 L22 22 L20 40 L18 22 L0 20 L18 18 Z" fill="#e8f3ff"/><circle cx="20" cy="20" r="3" fill="#fff"/></svg>
+      </span>
+      <span class="vh">Snowframe Creative Studios</span>
+    </h1>
     <p class="tagline"><b>Imagine.</b> Create. Visualize.</p>
     <a class="btn" href="#contact">Start a project
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -323,9 +358,8 @@
 
 <script>
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const INTRO = 2.6;   // seconds for the globe to reach full size
-  let revealed = false;
-  setTimeout(() => document.documentElement.classList.add('go'), 3500);   // never leave the title hidden if frames stall
+  // start the focus-pull reveal once the first frames have painted
+  requestAnimationFrame(() => setTimeout(() => document.documentElement.classList.add('go'), 250));
 
   // copy email: clipboard API, falls back to a selection prompt
   const copyBtn = document.getElementById('copy'), status = document.getElementById('copy-status');
@@ -341,56 +375,24 @@
     }
   });
 
-  // ponytail: hand-rolled wireframe sphere on 2D canvas, swap for three.js only if real 3D assets arrive
-  const cv = document.getElementById('wire'), ctx = cv.getContext('2d');
-  const tc = document.getElementById('tc'), t0 = performance.now();
-  let w, h;
-  function size() {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    w = cv.clientWidth; h = cv.clientHeight;
-    cv.width = w * dpr; cv.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (still) draw(t0);
+  // logo tilts a few degrees toward the pointer (fine pointers only)
+  const frame = document.querySelector('.logo-frame');
+  if (!still && matchMedia('(pointer: fine)').matches) {
+    document.querySelector('.hero').addEventListener('pointermove', ev => {
+      const x = ev.clientX / innerWidth - .5, y = ev.clientY / innerHeight - .5;
+      frame.style.setProperty('--ry', (x * 8).toFixed(2) + 'deg');
+      frame.style.setProperty('--rx', (-y * 6).toFixed(2) + 'deg');
+    });
   }
-  addEventListener('resize', size); size();
 
-  function draw(now) {
-    const t = (now - t0) / 1000;
-    const e = still ? 1 : 1 - Math.pow(1 - Math.min(t / INTRO, 1), 4);   // ease-out quart, 0 → 1
-    const a = t * 0.15 + e * 2.4, tilt = 0.45;                            // fast spin that settles
-    const R = Math.min(w, h) * 0.4 * (0.12 + 0.88 * e), cx = w / 2, cy = h / 2;
-    if (e > 0.8 && !revealed) { revealed = true; document.documentElement.classList.add('go'); }
-    const ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(tilt), st = Math.sin(tilt);
-    const proj = (x, y, z) => {
-      const x1 = x * ca + z * sa, z1 = -x * sa + z * ca;
-      const y1 = y * ct - z1 * st, z2 = y * st + z1 * ct;
-      const p = 2.6 / (2.6 + z2);
-      return [cx + x1 * R * p, cy + y1 * R * p, z2];
-    };
-    ctx.clearRect(0, 0, w, h);
-    ctx.lineWidth = 1;
-    const line = pts => {
-      for (let i = 1; i < pts.length; i++) {
-        const [x0, y0, z0] = pts[i - 1], [x1, y1] = pts[i];
-        ctx.strokeStyle = `rgba(111,163,230,${0.07 + (1 - z0) * 0.12})`;
-        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
-      }
-    };
-    for (let i = 1; i < 12; i++) {
-      const phi = Math.PI * i / 12, r = Math.sin(phi), y = Math.cos(phi), pts = [];
-      for (let j = 0; j <= 48; j++) { const th = 2 * Math.PI * j / 48; pts.push(proj(r * Math.cos(th), y, r * Math.sin(th))); }
-      line(pts);
-    }
-    for (let i = 0; i < 16; i++) {
-      const th = Math.PI * i / 16, pts = [];
-      for (let j = 0; j <= 48; j++) { const phi = 2 * Math.PI * j / 48; pts.push(proj(Math.sin(phi) * Math.cos(th), Math.cos(phi), Math.sin(phi) * Math.sin(th))); }
-      line(pts);
-    }
-    const f = Math.floor(t * 24), p2 = n => String(n).padStart(2, '0');
+  // running viewfinder timecode at 24 fps
+  const tc = document.getElementById('tc'), t0 = performance.now(), p2 = n => String(n).padStart(2, '0');
+  function tick(now) {
+    const f = Math.floor((now - t0) / 1000 * 24);
     tc.textContent = `${p2(Math.floor(f / 86400))}:${p2(Math.floor(f / 1440) % 60)}:${p2(Math.floor(f / 24) % 60)}:${p2(f % 24)}`;
-    if (!still) requestAnimationFrame(draw);
+    if (!still) requestAnimationFrame(tick);
   }
-  if (!still) requestAnimationFrame(draw);
+  requestAnimationFrame(tick);
 </script>
 </body>
 </html>
