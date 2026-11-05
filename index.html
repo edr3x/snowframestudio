@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snowframe Creative Studios — VFX, 3D, CGI & Product Animation</title>
+<meta name="description" content="Snowframe Creative Studios. VFX, 3D modeling, CGI and product animation for brands, productions, agencies and architecture. Imagine. Create. Visualize.">
+<meta name="theme-color" content="#05080d">
+<link rel="canonical" href="https://snowframestudio.com/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Snowframe Creative Studios">
+<meta property="og:title" content="Snowframe Creative Studios — VFX, 3D, CGI & Product Animation">
+<meta property="og:description" content="VFX, 3D modeling, CGI and product animation for brands, productions, agencies and architecture. Imagine. Create. Visualize.">
+<meta property="og:url" content="https://snowframestudio.com/">
+<meta property="og:image" content="https://snowframestudio.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Snowframe Creative Studios — Imagine. Create. Visualize.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Snowframe Creative Studios",
+  "alternateName": "Snowframe",
+  "url": "https://snowframestudio.com/",
+  "logo": "https://snowframestudio.com/apple-touch-icon.png",
+  "email": "contact@snowframestudio.com",
+  "slogan": "Imagine. Create. Visualize.",
+  "description": "Creative studio for VFX, 3D modeling, CGI and product animation.",
+  "knowsAbout": ["VFX", "3D Modeling", "CGI", "Product Animation"],
+  "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "email": "contact@snowframestudio.com" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ponytail: one variable family; the width axis does the display/body split -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05080d;
+    --bg-raise: #0a1220;
+    --blue: #3d6aa3;
+    --glow: #6fa3e6;
+    --line: #a9c4e6;
+    --rule: #a9c4e62e;
+    --white: #f4f8ff;
+    --dim: #9aabc2;
+    --rec: #ff4747;
+    --bar: max(56px, 7vh);
+    --ease: cubic-bezier(.16, 1, .3, 1);
+    --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scrollbar-color: #2a4466 var(--bg); }
+  body {
+    font-family: var(--font);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    letter-spacing: .005em;
+    color: var(--white);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--blue); color: var(--white); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--glow); outline-offset: 4px; border-radius: 2px; }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  .x { font-stretch: 125%; text-transform: uppercase; }  /* expanded display role */
+  .label { font-size: .8125rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); }
+
+  .grain {
+    position: fixed; inset: -50%;
+    pointer-events: none; z-index: 50; opacity: .06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain .5s steps(4) infinite;
+  }
+  @keyframes grain {
+    25% { transform: translate(-3%, 2%); } 50% { transform: translate(2%, -3%); }
+    75% { transform: translate(-1%, 3%); } 100% { transform: translate(3%, -1%); }
+  }
+
+  /* ---------- top letterbox doubles as nav ---------- */
+  .nav {
+    position: absolute; top: 0; left: 0; right: 0; height: var(--bar); z-index: 10;
+    background: #000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+  }
+  .brand { font-weight: 800; font-size: .95rem; letter-spacing: .12em; text-decoration: none; }
+  .brand span { font-weight: 400; color: var(--dim); }
+  .nav ul { list-style: none; display: flex; gap: clamp(1rem, 3vw, 2.25rem); }
+  .nav a:not(.brand) { text-decoration: none; color: var(--dim); transition: color .2s; }
+  .nav a:not(.brand):hover { color: var(--white); }
+  .nav .label { color: inherit; }
+
+  /* ---------- hero / viewfinder ---------- */
+  .hero {
+    position: relative;
+    height: 100vh; height: 100svh; min-height: 600px;
+    display: grid; place-items: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse 70% 55% at 50% 50%, #18304f 0%, #09121f 55%, var(--bg) 100%);
+  }
+  .hero::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--bar);
+    background: #000; z-index: 3;
+  }
+  #wire { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .vf { position: absolute; inset: calc(var(--bar) + 20px) clamp(12px, 3vw, 24px); pointer-events: none; z-index: 4; }
+  .corner { position: absolute; width: 28px; height: 28px; border: 0 solid var(--line); opacity: .6; }
+  .tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+  .tr { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+  .bl { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+  .br { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+  .hud { position: absolute; left: 24px; right: 24px; display: flex; justify-content: space-between; padding: .55rem .75rem; font-size: .75rem; }
+  .hud.t { top: 0; } .hud.b { bottom: 0; }
+  .rec { color: var(--white); }
+  .rec::before {
+    content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--rec); margin-right: .5rem; vertical-align: 1px;
+    animation: blink 1.2s steps(2) infinite;
+  }
+  @keyframes blink { 50% { opacity: .15; } }
+
+  .title { position: relative; z-index: 5; text-align: center; padding: 0 1rem; }
+  .wordmark {
+    font-weight: 800;
+    font-size: clamp(1.9rem, 9vw, 6rem);
+    letter-spacing: .01em; line-height: .9;
+    text-shadow: -1.5px 0 #ff2a4f80, 1.5px 0 #2ad4ff80;   /* lens fringing, static */
+  }
+  .sub { font-weight: 500; font-size: clamp(.85rem, 2.2vw, 1.15rem); letter-spacing: .5em; margin-top: 1.4rem; padding-left: .5em; }
+  .tagline { margin-top: 1.6rem; font-size: clamp(1.05rem, 2.6vw, 1.35rem); font-weight: 300; color: var(--line); letter-spacing: .02em; }
+  .tagline b { font-weight: 600; color: var(--white); }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: .7rem;
+    margin-top: 2.5rem; padding: 1rem 1.6rem; min-height: 48px;
+    background: var(--white); color: var(--bg);
+    font: 600 .875rem/1 var(--font); letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+    border: 1px solid var(--white); border-radius: 2px; cursor: pointer;
+    transition: background .25s var(--ease), color .25s var(--ease);
+  }
+  .btn svg { transition: transform .35s var(--ease); }
+  .btn:hover { background: transparent; color: var(--white); }
+  .btn:hover svg { transform: translateX(4px); }
+
+  /* ---------- sections ---------- */
+  section { padding: clamp(5rem, 12vw, 8rem) 0; }
+  .split { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 2rem 4rem; align-items: start; }
+  h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800; line-height: 1.05; }
+  .lede { color: var(--dim); margin-top: 1.25rem; max-width: 34ch; }
+
+  .services { list-style: none; border-top: 1px solid var(--rule); }
+  .service {
+    position: relative; padding: 1.75rem 0 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+    transition: padding-left .45s var(--ease);
+  }
+  .service::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, #3d6aa338, transparent 70%);
+    clip-path: inset(0 100% 0 0); transition: clip-path .5s var(--ease);
+  }
+  .service:hover { padding-left: 1.25rem; }
+  .service:hover::before { clip-path: inset(0 0 0 0); }
+  .service > * { position: relative; }
+  .service h3 { font-size: clamp(1.4rem, 3.4vw, 2.1rem); font-weight: 700; line-height: 1.1; }
+  .service p { color: var(--dim); margin-top: .5rem; max-width: 52ch; }
+
+  .clients { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--rule); }
+  .clients li { padding: 1.5rem 1.5rem 1.5rem 0; border-bottom: 1px solid var(--rule); }
+  .clients li:nth-child(odd) { border-right: 1px solid var(--rule); }
+  .clients li:nth-child(even) { padding: 1.5rem; }
+  .clients h3 { font-size: 1.125rem; font-weight: 700; }
+  .clients p { color: var(--dim); margin-top: .35rem; font-size: 1rem; }
+
+  /* ---------- contact ---------- */
+  .contact {
+    text-align: center; background: var(--bg-raise);
+  }
+  .contact h2 { font-size: clamp(2rem, 6vw, 4rem); }
+  .contact .lede { margin: 1.25rem auto 0; }
+  .mail {
+    display: inline-block; margin-top: 2.25rem;
+    font-size: clamp(1.15rem, 4.2vw, 2.25rem); font-weight: 600; letter-spacing: -.005em;
+    text-decoration: underline; text-decoration-color: var(--rule); text-decoration-thickness: 1px; text-underline-offset: .3em;
+    transition: text-decoration-color .25s;
+    overflow-wrap: anywhere;
+  }
+  .mail:hover { text-decoration-color: var(--glow); }
+  .actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+  .actions .btn { margin-top: 0; }
+  .btn.ghost { background: transparent; color: var(--white); border-color: #a9c4e666; }
+  .btn.ghost:hover { border-color: var(--white); }
+  .btn.ghost[data-done] { border-color: var(--glow); color: var(--glow); }
+
+  footer { border-top: 1px solid var(--rule); padding: 2rem 0 2.5rem; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem 2rem; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; }
+    .clients { grid-template-columns: 1fr; }
+    .clients li, .clients li:nth-child(even) { padding: 1.25rem 0; border-right: 0; }
+    .clients li:nth-child(odd) { border-right: 0; }
+    .hide-sm { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .grain, .rec::before { animation: none; }
+    .service, .service::before, .btn, .btn svg { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hero">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top">SNOWFRAME <span class="hide-sm">CREATIVE STUDIOS</span></a>
+    <ul>
+      <li class="hide-sm"><a class="label" href="#services">Services</a></li>
+      <li class="hide-sm"><a class="label" href="#clients">Clients</a></li>
+      <li><a class="label" href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <canvas id="wire" aria-hidden="true"></canvas>
+
+  <div class="vf label" aria-hidden="true">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <div class="hud t"><span class="rec">Rec</span><span>24 fps</span></div>
+    <div class="hud b"><span id="tc">00:00:00:00</span><span class="hide-sm">snowframestudio.com</span></div>
+  </div>
+
+  <div class="title" id="top">
+    <h1 class="wordmark x">Snowframe</h1>
+    <p class="sub">CREATIVE STUDIOS</p>
+    <p class="tagline"><b>Imagine.</b> Create. Visualize.</p>
+    <a class="btn" href="#contact">Start a project
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg>
+    </a>
+  </div>
+</header>
+
+<main>
+  <section id="services" aria-labelledby="services-h">
+    <div class="wrap split">
+      <div>
+        <h2 id="services-h" class="x">What we make</h2>
+        <p class="lede">Visuals that turn ideas into images, from a single product render to a full effects sequence.</p>
+      </div>
+      <ul class="services">
+        <li class="service"><h3 class="x">VFX</h3><p>Compositing, simulations and effects that sit seamlessly in live footage.</p></li>
+        <li class="service"><h3 class="x">3D Modeling</h3><p>Detailed, production-ready models of products, characters and environments.</p></li>
+        <li class="service"><h3 class="x">CGI</h3><p>Photoreal and stylised imagery for campaigns, packaging and screens.</p></li>
+        <li class="service"><h3 class="x">Product Animation</h3><p>Motion that shows how a product looks, works and feels.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="clients" aria-labelledby="clients-h" style="padding-top:0">
+    <div class="wrap split">
+      <div>
+        <h2 id="clients-h" class="x">Who we work with</h2>
+        <p class="lede">Teams that need images they can’t shoot, or footage that needs more than the camera caught.</p>
+      </div>
+      <ul class="clients">
+        <li><h3>Product brands &amp; e‑commerce</h3><p>Renders and animation for launches, listings and ads.</p></li>
+        <li><h3>Film, TV &amp; music video</h3><p>VFX shots, compositing and CG elements.</p></li>
+        <li><h3>Ad &amp; creative agencies</h3><p>A CGI and VFX partner for campaign work.</p></li>
+        <li><h3>Architecture &amp; real estate</h3><p>Visualisation of spaces before they exist.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h" class="x">Have a shot in mind?</h2>
+      <p class="lede">Tell us what you’re making. A rough idea is enough to start.</p>
+      <a class="mail" href="mailto:contact@snowframestudio.com">contact@snowframestudio.com</a>
+      <div class="actions">
+        <a class="btn" href="mailto:contact@snowframestudio.com?subject=New%20project">Email us
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+        <button class="btn ghost" id="copy" type="button">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" stroke="currentColor" stroke-width="1.5"/><path d="M11 2H2v9" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Copy address</span>
+        </button>
+      </div>
+      <p class="label" id="copy-status" role="status" aria-live="polite" style="margin-top:1rem;min-height:1.5em"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="label">
+  <div class="wrap">
+    <span>© 2026 Snowframe Creative Studios</span>
+    <span>VFX · 3D Modeling · CGI · Product Animation</span>
+    <a href="mailto:contact@snowframestudio.com">contact@snowframestudio.com</a>
+  </div>
+</footer>
+
+<script>
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // copy email: clipboard API, falls back to a selection prompt
+  const copyBtn = document.getElementById('copy'), status = document.getElementById('copy-status');
+  copyBtn.addEventListener('click', async () => {
+    const addr = 'contact@snowframestudio.com';
+    try {
+      await navigator.clipboard.writeText(addr);
+      copyBtn.dataset.done = ''; copyBtn.querySelector('span').textContent = 'Copied';
+      status.textContent = 'Address copied to clipboard';
+      setTimeout(() => { delete copyBtn.dataset.done; copyBtn.querySelector('span').textContent = 'Copy address'; status.textContent = ''; }, 2500);
+    } catch {
+      status.textContent = 'Copy blocked by the browser. The address is ' + addr;
+    }
+  });
+
+  // ponytail: hand-rolled wireframe sphere on 2D canvas, swap for three.js only if real 3D assets arrive
+  const cv = document.getElementById('wire'), ctx = cv.getContext('2d');
+  const tc = document.getElementById('tc'), t0 = performance.now();
+  let w, h;
+  function size() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    w = cv.clientWidth; h = cv.clientHeight;
+    cv.width = w * dpr; cv.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (still) draw(t0);
+  }
+  addEventListener('resize', size); size();
+
+  function draw(now) {
+    const t = (now - t0) / 1000, a = t * 0.15, tilt = 0.45;
+    const R = Math.min(w, h) * 0.4, cx = w / 2, cy = h / 2;
+    const ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(tilt), st = Math.sin(tilt);
+    const proj = (x, y, z) => {
+      const x1 = x * ca + z * sa, z1 = -x * sa + z * ca;
+      const y1 = y * ct - z1 * st, z2 = y * st + z1 * ct;
+      const p = 2.6 / (2.6 + z2);
+      return [cx + x1 * R * p, cy + y1 * R * p, z2];
+    };
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineWidth = 1;
+    const line = pts => {
+      for (let i = 1; i < pts.length; i++) {
+        const [x0, y0, z0] = pts[i - 1], [x1, y1] = pts[i];
+        ctx.strokeStyle = `rgba(111,163,230,${0.07 + (1 - z0) * 0.12})`;
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+      }
+    };
+    for (let i = 1; i < 12; i++) {
+      const phi = Math.PI * i / 12, r = Math.sin(phi), y = Math.cos(phi), pts = [];
+      for (let j = 0; j <= 48; j++) { const th = 2 * Math.PI * j / 48; pts.push(proj(r * Math.cos(th), y, r * Math.sin(th))); }
+      line(pts);
+    }
+    for (let i = 0; i < 16; i++) {
+      const th = Math.PI * i / 16, pts = [];
+      for (let j = 0; j <= 48; j++) { const phi = 2 * Math.PI * j / 48; pts.push(proj(Math.sin(phi) * Math.cos(th), Math.cos(phi), Math.sin(phi) * Math.sin(th))); }
+      line(pts);
+    }
+    const f = Math.floor(t * 24), p2 = n => String(n).padStart(2, '0');
+    tc.textContent = `${p2(Math.floor(f / 86400))}:${p2(Math.floor(f / 1440) % 60)}:${p2(Math.floor(f / 24) % 60)}:${p2(f % 24)}`;
+    if (!still) requestAnimationFrame(draw);
+  }
+  if (!still) requestAnimationFrame(draw);
+</script>
+</body>
+</html>
